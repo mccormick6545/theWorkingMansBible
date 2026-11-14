@@ -32,7 +32,8 @@ Packages/
 └── Shared/                    Used by both sides
     ├── WorkingMansCore
     ├── WorkingMansDocuments
-    └── WorkingMansPartsCatalog
+    ├── WorkingMansPartsCatalog
+    └── WorkingMansPartsCatalogUI
 ```
 
 | Package | What it holds | Platforms |
@@ -42,6 +43,7 @@ Packages/
 | `Shared/WorkingMansCore` | Basic calculators, unit conversions, `SourceLink` | iOS 16+, macOS 13+ |
 | `Shared/WorkingMansDocuments` | On-device document archive and PDF export (each owner's records stay separate) | iOS 17+, macOS 14+ |
 | `Shared/WorkingMansPartsCatalog` | Offline parts catalog that only imports records with recorded redistribution rights | iOS 16+, macOS 13+ |
+| `Shared/WorkingMansPartsCatalogUI` | SwiftUI catalog screens: search, categories, part details, source & license, favorites, JSON import, on-device storage | iOS 17+, macOS 14+ |
 
 Rules: Home and Vehicles packages never depend on each other – only on `Shared`. New home features go in `Packages/Home`, new vehicle features in `Packages/Vehicles`, and only code both sides need goes in `Packages/Shared`.
 

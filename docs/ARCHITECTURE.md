@@ -9,6 +9,7 @@ A universal SwiftUI app for iPhone, iPad, and Mac is planned, using a shared loc
   - `WorkingMansCore` – calculators, units and link types. No dependencies.
   - `WorkingMansDocuments` – on-device document archive and PDF export.
   - `WorkingMansPartsCatalog` – offline, license-checked parts catalog.
+  - `WorkingMansPartsCatalogUI` – SwiftUI screens for the parts catalog.
 
 Home and Vehicles packages must not import each other; they may depend only on `Shared` packages.
 
