@@ -17,6 +17,16 @@ Early development. This repository currently contains a starter Swift package, p
 - Show provenance, units, assumptions, and safety warnings for technical specifications.
 - Never present inferred fastener torque values or structural/electrical designs as OEM or engineer-approved.
 
+## Run the app
+
+The app lives in `Apps/WorkingMansBible.swiftpm` (a Swift app package – no Xcode project file needed).
+
+1. Open `Apps/WorkingMansBible.swiftpm` in Xcode (or Swift Playgrounds on iPad or Mac).
+2. Pick an iPhone or iPad simulator, your device, or **My Mac (Designed for iPad)** on Apple silicon.
+3. Press **Run**. To install on your own iPhone, choose your team under the app's Signing settings first.
+
+The app starts with an empty parts catalog; import a JSON catalog whose records carry recorded redistribution rights.
+
 ## Start developing
 
 Open the repository in Xcode on macOS. Every package is a Swift Package Manager library; add them to a universal SwiftUI app target using **File → Add Package Dependencies → Add Local**.
