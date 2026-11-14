@@ -6,7 +6,7 @@ let package = Package(
     name: "WorkingMansHome",
     platforms: [.iOS(.v16), .macOS(.v13)],
     products: [.library(name: "WorkingMansHome", targets: ["WorkingMansHome"])],
-    dependencies: [.package(path: "../WorkingMansCore")],
+    dependencies: [.package(path: "../../Shared/WorkingMansCore")],
     targets: [
         .target(name: "WorkingMansHome", dependencies: ["WorkingMansCore"]),
         .testTarget(name: "WorkingMansHomeTests", dependencies: ["WorkingMansHome"])

@@ -25,11 +25,4 @@ public protocol PartSearchProvider: Sendable {
     func search(query: String) async throws -> [LivePartResult]
 }
 
-public struct ProductLink: Sendable, Hashable {
-    public let title: String
-    public let url: URL
-    public init(title: String, url: URL) {
-        self.title = title
-        self.url = url
-    }
-}
+// Outbound links use `SourceLink` from WorkingMansCore.

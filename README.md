@@ -19,21 +19,36 @@ Early development. This repository currently contains a starter Swift package, p
 
 ## Start developing
 
-Open the repository in Xcode on macOS. Each folder in `Packages/` is a Swift Package Manager library. Add them to a universal SwiftUI app target using **File → Add Package Dependencies → Add Local**.
+Open the repository in Xcode on macOS. Every package is a Swift Package Manager library; add them to a universal SwiftUI app target using **File → Add Package Dependencies → Add Local**.
+
+Packages are grouped by side of the app:
+
+```
+Packages/
+├── Home/                      Home improvement & trades only
+│   └── WorkingMansHome
+├── Vehicles/                  Vehicles & equipment only
+│   └── WorkingMansVehicles
+└── Shared/                    Used by both sides
+    ├── WorkingMansCore
+    ├── WorkingMansDocuments
+    └── WorkingMansPartsCatalog
+```
 
 | Package | What it holds | Platforms |
 |---|---|---|
-| `WorkingMansCore` | Shared calculators, unit conversions, `SourceLink` | iOS 16+, macOS 13+ |
-| `WorkingMansHome` | **Home side only:** trade calculators (wire size, voltage drop, solar, battery bank, concrete, block/brick, stairs) and appliance rating-plate lookup with CPSC recalls | iOS 16+, macOS 13+ |
-| `WorkingMansVehicles` | **Vehicle side only:** VIN validation and check digit, NHTSA vPIC decoding, NHTSA recalls | iOS 16+, macOS 13+ |
-| `WorkingMansDocuments` | On-device document archive and PDF export, shared by both sides (each owner's records stay separate) | iOS 17+, macOS 14+ |
+| `Home/WorkingMansHome` | Trade calculators (wire size, voltage drop, solar, battery bank, concrete, block/brick, stairs) and appliance rating-plate lookup with CPSC recalls | iOS 16+, macOS 13+ |
+| `Vehicles/WorkingMansVehicles` | VIN validation and check digit, NHTSA vPIC decoding, NHTSA recalls | iOS 16+, macOS 13+ |
+| `Shared/WorkingMansCore` | Basic calculators, unit conversions, `SourceLink` | iOS 16+, macOS 13+ |
+| `Shared/WorkingMansDocuments` | On-device document archive and PDF export (each owner's records stay separate) | iOS 17+, macOS 14+ |
+| `Shared/WorkingMansPartsCatalog` | Offline parts catalog that only imports records with recorded redistribution rights | iOS 16+, macOS 13+ |
 
-Home and vehicle code never depend on each other; both depend only on `WorkingMansCore`.
+Rules: Home and Vehicles packages never depend on each other – only on `Shared`. New home features go in `Packages/Home`, new vehicle features in `Packages/Vehicles`, and only code both sides need goes in `Packages/Shared`.
 
 Run the tests for a package from its folder:
 
 ```
-cd Packages/WorkingMansHome && swift test
+cd Packages/Home/WorkingMansHome && swift test
 ```
 
 ### Repository roadmap

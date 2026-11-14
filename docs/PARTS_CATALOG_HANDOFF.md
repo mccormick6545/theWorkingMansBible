@@ -1,6 +1,6 @@
 # Parts Catalog — Agent handoff
 
-Package: `Packages/WorkingMansPartsCatalog` (standalone Swift package).
+Package: `Packages/Shared/WorkingMansPartsCatalog` (standalone Swift package).
 
 ## Current functionality
 - Part, asset, specification, provenance and live-result models.

@@ -13,7 +13,7 @@ Foundation-only Swift Package Manager library for iPhone, iPad, and Mac (iOS 16+
 
 ## Usage
 
-Add `Packages/WorkingMansPartsCatalog` as a local package in Xcode or add as a Git dependency once the branch is merged.
+Add `Packages/Shared/WorkingMansPartsCatalog` as a local package in Xcode or add as a Git dependency once the branch is merged.
 
 ```swift
 import WorkingMansPartsCatalog
