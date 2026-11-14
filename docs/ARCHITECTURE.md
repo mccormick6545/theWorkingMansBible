@@ -2,6 +2,14 @@
 
 A universal SwiftUI app for iPhone, iPad, and Mac is planned, using a shared local Swift package.
 
+## Packages
+- `WorkingMansCore` – shared calculators, units and link types. No dependencies.
+- `WorkingMansHome` – home improvement and trades. Depends only on Core.
+- `WorkingMansVehicles` – vehicles and equipment. Depends only on Core.
+- `WorkingMansDocuments` – on-device document archive and PDF export used by both sides.
+
+Home and vehicle packages must not import each other.
+
 ## Core modules
 - Trade and vehicle catalogs, calculators, project tracking.
 - Offline SQLite database with optional data synchronization.
