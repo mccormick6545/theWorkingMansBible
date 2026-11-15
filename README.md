@@ -17,6 +17,16 @@ Early development. This repository currently contains a starter Swift package, p
 - Show provenance, units, assumptions, and safety warnings for technical specifications.
 - Never present inferred fastener torque values or structural/electrical designs as OEM or engineer-approved.
 
+## Run the app
+
+The app lives in `Apps/WorkingMansBible.swiftpm` (a Swift app package – no Xcode project file needed).
+
+1. Open `Apps/WorkingMansBible.swiftpm` in Xcode (or Swift Playgrounds on iPad or Mac).
+2. Pick an iPhone or iPad simulator, your device, or **My Mac (Designed for iPad)** on Apple silicon.
+3. Press **Run**. To install on your own iPhone, choose your team under the app's Signing settings first.
+
+The app starts with an empty parts catalog; import a JSON catalog whose records carry recorded redistribution rights.
+
 ## Start developing
 
 Open the repository in Xcode on macOS. Every package is a Swift Package Manager library; add them to a universal SwiftUI app target using **File → Add Package Dependencies → Add Local**.
@@ -32,7 +42,8 @@ Packages/
 └── Shared/                    Used by both sides
     ├── WorkingMansCore
     ├── WorkingMansDocuments
-    └── WorkingMansPartsCatalog
+    ├── WorkingMansPartsCatalog
+    └── WorkingMansPartsCatalogUI
 ```
 
 | Package | What it holds | Platforms |
@@ -42,6 +53,7 @@ Packages/
 | `Shared/WorkingMansCore` | Basic calculators, unit conversions, `SourceLink` | iOS 16+, macOS 13+ |
 | `Shared/WorkingMansDocuments` | On-device document archive and PDF export (each owner's records stay separate) | iOS 17+, macOS 14+ |
 | `Shared/WorkingMansPartsCatalog` | Offline parts catalog that only imports records with recorded redistribution rights | iOS 16+, macOS 13+ |
+| `Shared/WorkingMansPartsCatalogUI` | SwiftUI catalog screens: search, categories, part details, source & license, favorites, JSON import, on-device storage | iOS 17+, macOS 14+ |
 
 Rules: Home and Vehicles packages never depend on each other – only on `Shared`. New home features go in `Packages/Home`, new vehicle features in `Packages/Vehicles`, and only code both sides need goes in `Packages/Shared`.
 
