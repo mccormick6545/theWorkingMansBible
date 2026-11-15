@@ -91,7 +91,8 @@ public struct DataSource: Codable, Sendable, Equatable, Hashable {
     public let publisher: String
     /// The page or file the record was taken from. Must be https.
     public let url: String
-    /// A license identifier, e.g. "CC0-1.0", "CC-BY-4.0", "US-Government-Work", or "Licensed: <agreement ref>".
+    /// A reviewed Basic license identifier, e.g. "CC0-1.0" or "CC-BY-4.0".
+    /// Proprietary agreements and unverified government-work claims must not enter Basic.
     public let license: String
     /// Credit text the license requires, shown wherever the record is used. May be empty if none is required.
     public let attribution: String
