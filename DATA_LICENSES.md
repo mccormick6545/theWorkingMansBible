@@ -10,3 +10,9 @@ Each imported dataset must document:
 - update timestamp and validation process
 
 Until reviewed, source candidates are links, not bundled datasets.
+
+## Catalog data files (`Data/`)
+
+Each record in a `Data/*.json` catalog carries its own `source` (publisher, https URL, license identifier,
+attribution, retrieval date). The app refuses a catalog that has any record without them. Licensed or paid content
+is never stored in this repository; it is served to signed-in customers by a separate private service.
