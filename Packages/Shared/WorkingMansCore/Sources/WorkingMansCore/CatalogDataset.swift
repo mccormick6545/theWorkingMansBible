@@ -91,7 +91,8 @@ public struct DataSource: Codable, Sendable, Equatable, Hashable {
     public let publisher: String
     /// The page or file the record was taken from. Must be https.
     public let url: String
-    /// A license identifier, e.g. "CC0-1.0", "CC-BY-4.0", "US-Government-Work", or "Licensed: <agreement ref>".
+    /// A reviewed Basic license identifier, e.g. "CC0-1.0" or "CC-BY-4.0".
+    /// Proprietary agreements and unverified government-work claims must not enter Basic.
     public let license: String
     /// Credit text the license requires, shown wherever the record is used. May be empty if none is required.
     public let attribution: String
@@ -115,6 +116,8 @@ public struct DataSource: Codable, Sendable, Equatable, Hashable {
         guard let link = URL(string: url), link.scheme == "https", link.host != nil else {
             throw CatalogDataError.invalidURL(recordID)
         }
+        // A license being present is NOT evidence it permits commercial reuse.
+        try BasicLicensePolicy.validate(self, recordID: recordID)
     }
 }
 
@@ -126,6 +129,8 @@ public enum CatalogDataError: LocalizedError, Equatable {
     case invalidURL(String)
     case duplicateID(String)
     case invalidYears(String)
+    case unsupportedLicense(String, String)
+    case missingAttribution(String)
 
     public var errorDescription: String? {
         switch self {
@@ -136,6 +141,8 @@ public enum CatalogDataError: LocalizedError, Equatable {
         case .invalidURL(let id): "Record “\(id)” needs a secure (https) source link. The catalog wasn't loaded."
         case .duplicateID(let id): "Record “\(id)” appears more than once. The catalog wasn't loaded."
         case .invalidYears(let id): "Record “\(id)” ends before it starts. The catalog wasn't loaded."
+        case .unsupportedLicense(let id, let license): "Record “\(id)” uses a license not approved for Basic: \(license). The catalog wasn't loaded."
+        case .missingAttribution(let id): "Record “\(id)” requires attribution for CC-BY-4.0. The catalog wasn't loaded."
         }
     }
 }

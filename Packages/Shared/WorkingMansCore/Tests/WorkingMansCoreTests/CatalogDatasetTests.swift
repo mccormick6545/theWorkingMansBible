@@ -76,6 +76,41 @@ struct CatalogDatasetTests {
         }
     }
 
+    @Test func blocksNoncommercialContent() throws {
+        let noncommercial = vehicle(id: "nc", source: source(license: "CC-BY-NC-SA-4.0"))
+        #expect(throws: CatalogDataError.unsupportedLicense("nc", "CC-BY-NC-SA-4.0")) {
+            try CatalogDataset(generatedAt: "2026-11-15T00:00:00Z",
+                               vehicles: [noncommercial]).validate()
+        }
+    }
+
+    @Test func blocksArbitraryOrMisstatedLicense() throws {
+        let restrictive = vehicle(id: "restricted", source: source(license: "All rights reserved"))
+        #expect(throws: CatalogDataError.unsupportedLicense("restricted", "All rights reserved")) {
+            try CatalogDataset(generatedAt: "2026-11-15T00:00:00Z",
+                               vehicles: [restrictive]).validate()
+        }
+    }
+
+    @Test func rejectsCCBYWithoutAttribution() throws {
+        let credited = vehicle(id: "missing-credit", source: source(license: "CC-BY-4.0"))
+        #expect(throws: CatalogDataError.missingAttribution("missing-credit")) {
+            try CatalogDataset(generatedAt: "2026-11-15T00:00:00Z",
+                               vehicles: [credited]).validate()
+        }
+    }
+
+    @Test func acceptsCCBYWithAttribution() throws {
+        let credited = vehicle(
+            id: "attributed",
+            source: DataSource(publisher: "Example", url: "https://example.org/data",
+                               license: "CC-BY-4.0", attribution: "Example / CC BY 4.0",
+                               retrievedOn: "2026-11-15")
+        )
+        try CatalogDataset(generatedAt: "2026-11-15T00:00:00Z",
+                           vehicles: [credited]).validate()
+    }
+
     @Test func allowsUnknownYears() throws {
         let dataset = CatalogDataset(generatedAt: "2026-11-14T00:00:00Z", vehicles: [vehicle(id: "unknown", from: nil, to: nil)])
         try dataset.validate()
